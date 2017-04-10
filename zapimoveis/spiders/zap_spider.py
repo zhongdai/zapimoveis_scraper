@@ -39,12 +39,12 @@ class ZapSpider(scrapy.Spider):
         self.lua_script = """
             function main(splash)
               assert(splash:go(splash.args.url))
-              assert(splash:runjs([[
+              splash:runjs([[
                       p=$('input[name="txtPaginacao"]');
                       p.val({pag});
                       p.blur();
-              ]]))
-              assert(splash:wait({wait}))
+              ]])
+              splash:wait({wait})
               return splash:html()
             end
         """
